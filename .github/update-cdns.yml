@@ -1,0 +1,27 @@
+name: "Actualizar CDNs de index.html"
+
+on:
+  schedule:
+    - cron: "0 0 * * 1" # Se ejecuta automáticamente todos los lunes a medianoche
+  workflow_dispatch: # Te permite ejecutarlo manualmente cuando quieras
+
+jobs:
+  update-links:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Buscar y actualizar CDNs
+        uses: jaid/action-update-html-links@v1
+        with:
+          htmlFile: "index.html" # Si está dentro de una carpeta "Principal", cambia a "Principal/index.html"
+
+      - name: Crear Pull Request si hay cambios
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: actualizar enlaces CDN en index.html"
+          title: "🤖 Actualización automática de librerías en index.html"
+          body: "Este PR actualiza los enlaces CDN de index.html a sus últimas versiones estables."
+          branch: "dependabot-cdn-updates"
