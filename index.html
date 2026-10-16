@@ -1,783 +1,207 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#b7b8b9">
-<meta name="description"
-content="APPMADRID365 — talento, software e innovación nacidos en Madrid.">
-
-<title>APPMADRID365 — Apps, software e innovación</title>
-
-<style>
-/* =========================================================
-   APPMADRID365
-   Apps · Software · Innovación
-   HTML + CSS + JavaScript puro
-   Sin dependencias externas
-   ========================================================= */
-
-:root {
-    --fondo: #b7b8b9;
-    --fondo-claro: #c4c5c6;
-    --negro: #17191c;
-    --gris: #45494e;
-    --azul: #0866f5;
-    --blanco: #f7f8fa;
-    --borde: rgba(23,25,28,.17);
-    --ancho: 1120px;
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 85px;
-}
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: var(--fondo);
-    color: var(--negro);
-    line-height: 1.6;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-button {
-    font: inherit;
-}
-
-.contenedor {
-    width: min(var(--ancho), calc(100% - 40px));
-    margin: auto;
-}
-
-/* CABECERA */
-
-header {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background: rgba(183,184,185,.96);
-    border-bottom: 1px solid var(--borde);
-    backdrop-filter: blur(10px);
-}
-
-.cabecera {
-    min-height: 82px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 25px;
-}
-
-.logo {
-    font-size: 1.65rem;
-    font-weight: 900;
-    letter-spacing: -1.3px;
-    white-space: nowrap;
-}
-
-.logo span,
-.azul {
-    color: var(--azul);
-}
-
-.sublogo {
-    color: var(--gris);
-    font-size: .78rem;
-    letter-spacing: 1.8px;
-    text-transform: uppercase;
-}
-
-.menu {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-}
-
-.menu a {
-    font-size: .9rem;
-    font-weight: 600;
-    transition: color .2s;
-}
-
-.menu a:hover {
-    color: var(--azul);
-}
-
-.idiomas {
-    display: flex;
-    gap: 5px;
-}
-
-.idioma {
-    border: 1px solid var(--borde);
-    background: transparent;
-    padding: 6px 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: .8rem;
-}
-
-.idioma.activo {
-    color: white;
-    background: var(--azul);
-    border-color: var(--azul);
-}
-
-/* PORTADA */
-
-.portada {
-    min-height: 580px;
-    padding: 95px 0 55px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.portada::before {
-    content: "";
-    position: absolute;
-    width: 450px;
-    height: 450px;
-    border-radius: 50%;
-    background: rgba(255,255,255,.15);
-    filter: blur(65px);
-    top: 20px;
-    left: calc(50% - 225px);
-    pointer-events: none;
-}
-
-.portada-contenido {
-    position: relative;
-    z-index: 1;
-}
-
-.etiqueta {
-    display: inline-block;
-    border: 1px solid var(--borde);
-    padding: 6px 13px;
-    border-radius: 30px;
-    font-size: .76rem;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    margin-bottom: 25px;
-}
-
-h1 {
-    font-size: clamp(3rem, 8vw, 6.8rem);
-    line-height: 1;
-    letter-spacing: -5px;
-    font-weight: 900;
-}
-
-h1 span {
-    color: var(--azul);
-}
-
-.eslogan {
-    margin-top: 23px;
-    font-size: clamp(1.35rem, 3vw, 2.15rem);
-    font-weight: 500;
-    letter-spacing: -.7px;
-}
-
-.descripcion {
-    max-width: 620px;
-    margin: 18px auto 0;
-    font-size: 1.05rem;
-    color: var(--gris);
-}
-
-.boton {
-    display: inline-block;
-    margin-top: 30px;
-    padding: 13px 24px;
-    background: var(--azul);
-    color: white;
-    border-radius: 5px;
-    font-weight: 700;
-    transition: transform .2s, background .2s;
-}
-
-.boton:hover {
-    background: #0051ca;
-    transform: translateY(-2px);
-}
-
-/* MADRID: ILUSTRACIÓN VECTORIAL PROPIA */
-
-.madrid {
-    max-width: 1050px;
-    margin: 48px auto 0;
-    padding: 0 10px;
-}
-
-.madrid svg {
-    display: block;
-    width: 100%;
-    height: auto;
-}
-
-.edificios {
-    stroke: #33373c;
-    stroke-width: 1.6;
-    stroke-linejoin: round;
-    stroke-linecap: round;
-    fill: none;
-}
-
-.detalles {
-    stroke: #545960;
-    stroke-width: 1;
-    fill: none;
-}
-
-/* SERVICIOS */
-
-.servicios {
-    background: rgba(255,255,255,.30);
-    border-top: 1px solid var(--borde);
-    border-bottom: 1px solid var(--borde);
-    padding: 65px 0;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
-}
-
-.tarjeta {
-    padding: 20px 12px;
-    text-align: center;
-    border: 1px solid transparent;
-    border-radius: 8px;
-    transition: background .2s, border-color .2s;
-}
-
-.tarjeta:hover {
-    background: rgba(255,255,255,.28);
-    border-color: var(--borde);
-}
-
-.icono {
-    color: var(--azul);
-    font-size: 2.5rem;
-    margin-bottom: 12px;
-    line-height: 1.2;
-}
-
-.tarjeta h2 {
-    font-size: 1.05rem;
-    margin-bottom: 9px;
-}
-
-.tarjeta p {
-    font-size: .91rem;
-    color: var(--gris);
-}
-
-/* PROYECTOS */
-
-.proyectos {
-    padding: 85px 0;
-}
-
-.titulo-seccion {
-    font-size: clamp(2rem, 4vw, 3rem);
-    letter-spacing: -1.5px;
-    text-align: center;
-    margin-bottom: 12px;
-}
-
-.texto-seccion {
-    max-width: 620px;
-    margin: 0 auto 35px;
-    text-align: center;
-    color: var(--gris);
-}
-
-.proyecto {
-    max-width: 800px;
-    margin: auto;
-    padding: 30px;
-    border: 1px solid var(--borde);
-    border-radius: 8px;
-    background: rgba(255,255,255,.18);
-}
-
-.proyecto h3 {
-    font-size: 1.4rem;
-    margin-bottom: 8px;
-}
-
-.proyecto p {
-    color: var(--gris);
-}
-
-.etiquetas {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 18px;
-}
-
-.etiquetas span {
-    font-size: .78rem;
-    border: 1px solid var(--borde);
-    padding: 4px 10px;
-    border-radius: 20px;
-}
-
-/* SOBRE NOSOTROS */
-
-.acerca {
-    padding: 70px 0;
-    text-align: center;
-    background: rgba(255,255,255,.20);
-    border-top: 1px solid var(--borde);
-    border-bottom: 1px solid var(--borde);
-}
-
-.acerca p {
-    max-width: 700px;
-    margin: 15px auto 0;
-    color: var(--gris);
-}
-
-/* CONTACTO Y PIE */
-
-.contacto {
-    padding: 65px 0;
-    text-align: center;
-}
-
-.contacto p {
-    color: var(--gris);
-    margin-top: 10px;
-}
-
-footer {
-    padding: 25px 0;
-    border-top: 1px solid var(--borde);
-}
-
-.pie {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-    color: var(--gris);
-    font-size: .85rem;
-}
-
-.pie a:hover {
-    color: var(--azul);
-}
-
-/* MOVILES */
-
-@media (max-width: 800px) {
-    .cabecera {
-        padding: 15px 0;
-        flex-wrap: wrap;
-    }
-
-    .menu {
-        flex-wrap: wrap;
-        gap: 13px;
-    }
-
-    .cabecera-derecha {
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 12px;
-    }
-
-    .portada {
-        padding-top: 70px;
-        min-height: auto;
-    }
-
-    .grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-    }
-
-    h1 {
-        letter-spacing: -2px;
-    }
-}
-
-@media (max-width: 480px) {
-    .contenedor {
-        width: calc(100% - 28px);
-    }
-
-    .logo {
-        font-size: 1.4rem;
-    }
-
-    .sublogo {
-        font-size: .65rem;
-    }
-
-    .cabecera-derecha {
-        width: 100%;
-        justify-content: space-between;
-    }
-
-    .menu {
-        gap: 12px;
-    }
-
-    .menu a {
-        font-size: .8rem;
-    }
-
-    .grid {
-        grid-template-columns: 1fr;
-    }
-
-    .tarjeta {
-        max-width: 340px;
-        margin: auto;
-    }
-
-    .proyecto {
-        padding: 20px;
-    }
-
-    .pie {
-        flex-direction: column;
-        text-align: center;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    *, *::before, *::after {
-        transition-duration: .01ms !important;
-    }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AppMadrid365 | El Hub de Programación y Tecnología en Madrid</title>
+    <style>
+        /* Estilos generales */
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #3b82f6;
+            --accent: #f59e0b;
+            --dark: #0f172a;
+            --light: #f8fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Cabecera / Navegación */
+        header {
+            background: var(--dark);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary);
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--secondary);
+        }
+
+        /* Sección Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            text-align: center;
+            padding: 6rem 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 2rem auto;
+            color: #cbd5e1;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--dark);
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #d97706;
+            transform: translateY(-2px);
+        }
+
+        /* Sección de Características / Hub */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.25rem;
+            margin-bottom: 3rem;
+            color: var(--primary);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            color: #64748b;
+        }
+
+        /* Pie de página */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
-    <div class="contenedor cabecera">
-        <a class="marca" href="#inicio" aria-label="APPMADRID365">
-            <div class="logo">APP<span>MADRID365</span></div>
-            <div class="sublogo"
-                 data-es="Apps · Software · Innovación"
-                 data-en="Apps · Software · Innovation">
-                Apps · Software · Innovación
+    <!-- Cabecera -->
+    <header>
+        <div class="logo">AppMadrid<span>365</span></div>
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#hub">El Hub</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+    </header>
+
+    <!-- Sección Principal (Hero) -->
+    <section id="inicio" class="hero">
+        <h1>Conectando el talento tech en <span>Madrid</span></h1>
+        <p>AppMadrid365 es el punto de encuentro definitivo para desarrolladores, programadores y entusiastas de la tecnología en la capital.</p>
+        <a href="#hub" class="btn">Explora el Hub</a>
+    </section>
+
+    <!-- Contenido del Hub -->
+    <main class="container" id="hub">
+        <h2 class="section-title">¿Qué encontrarás en AppMadrid365?</h2>
+        <div class="features-grid">
+            <div class="card">
+                <h3>Comunidad Activa</h3>
+                <p>Conecta con otros programadores de Madrid, comparte proyectos, resuelve dudas y forma equipos de trabajo para crear soluciones innovadoras.</p>
             </div>
-        </a>
-
-        <div class="cabecera-derecha">
-            <nav class="menu" aria-label="Navegación">
-                <a href="#inicio" data-es="Inicio" data-en="Home">Inicio</a>
-                <a href="#servicios" data-es="Servicios" data-en="Services">Servicios</a>
-                <a href="#proyectos" data-es="Proyectos" data-en="Projects">Proyectos</a>
-                <a href="#acerca" data-es="Acerca de" data-en="About">Acerca de</a>
-                <a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a>
-            </nav>
-
-            <div class="idiomas">
-                <button class="idioma activo" type="button"
-                        data-idioma="es" aria-pressed="true">ES</button>
-                <button class="idioma" type="button"
-                        data-idioma="en" aria-pressed="false">EN</button>
+            <div class="card">
+                <h3>Eventos y Meetups</h3>
+                <p>Mantente al día con los hackathons, talleres presenciales y conferencias sobre desarrollo web, IA y software que ocurren los 365 días del año en la ciudad.</p>
             </div>
-        </div>
-    </div>
-</header>
-
-<main>
-    <section class="portada" id="inicio">
-        <div class="contenedor portada-contenido">
-            <div class="etiqueta"
-                 data-es="Tecnología hecha en Madrid"
-                 data-en="Technology made in Madrid">
-                Tecnología hecha en Madrid
-            </div>
-
-            <h1>APP<span>MADRID365</span></h1>
-
-            <p class="eslogan"
-               data-es="Madrid, talento e innovación."
-               data-en="Madrid, talent and innovation.">
-                Madrid, talento e innovación.
-            </p>
-
-            <p class="descripcion"
-               data-es="Un espacio para las aplicaciones, el software y las ideas que impulsan la transformación digital."
-               data-en="A space for applications, software and ideas that drive digital transformation.">
-                Un espacio para las aplicaciones, el software y las ideas
-                que impulsan la transformación digital.
-            </p>
-
-            <a class="boton" href="#proyectos"
-               data-es="Explorar proyectos →"
-               data-en="Explore projects →">
-                Explorar proyectos →
-            </a>
-
-            <!-- Ilustración vectorial integrada: no necesita imágenes externas -->
-            <div class="madrid" aria-hidden="true">
-                <svg viewBox="0 0 1000 220"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <g class="edificios">
-                        <!-- Edificios de la ciudad -->
-                        <path d="M5 200V150H48V200 M12 150V135H41V150
-                                 M20 135V122H33V135 M26 122V100H29V122"/>
-                        <path d="M58 200V170H100V200 M65 170V155H93V170
-                                 M72 155V145H86V155"/>
-                        <path d="M110 200V115H158V200
-                                 M119 115V100H149V115
-                                 M126 100V82H142V100
-                                 M131 82V68H137V82
-                                 M134 68V49H135V68"/>
-                        <path d="M119 130H149 M119 145H149 M119 160H149
-                                 M119 175H149 M128 115V190 M140 115V190"/>
-                        <path d="M169 200V150H215V200
-                                 M176 150V135H208V150
-                                 M183 135V125H201V135"/>
-                        <path d="M225 200V172H265V200 M233 172V160H257V172"/>
-                        <path d="M277 200V140H324V200
-                                 M284 140V126H317V140
-                                 M292 126V111H309V126
-                                 M299 111V95H302V111"/>
-                        <path d="M335 200V160H375V200 M343 160V146H367V160"/>
-                        <path d="M387 200V126H437V200
-                                 M395 126V111H429V126
-                                 M404 111V95H420V111
-                                 M411 95V78H414V95"/>
-                        <path d="M448 200V155H492V200
-                                 M457 155V142H483V155"/>
-                        <path d="M503 200V145H550V200
-                                 M511 145V130H542V145
-                                 M520 130V115H534V130"/>
-                        <path d="M561 200V170H603V200
-                                 M570 170V157H594V170"/>
-                        <path d="M615 200V125H660V200
-                                 M623 125V111H652V125
-                                 M632 111V96H644V111"/>
-                        <path d="M671 200V155H715V200
-                                 M680 155V140H706V155"/>
-                        <path d="M728 200V135H770V200
-                                 M736 135V119H762V135"/>
-                        <path d="M783 200V165H825V200
-                                 M791 165V151H817V165"/>
-                        <path d="M838 200V120H881V200
-                                 M846 120V105H873V120
-                                 M855 105V87H865V105"/>
-                        <path d="M893 200V150H937V200
-                                 M901 150V135H929V150
-                                 M949 200V170H995V200"/>
-                        <!-- Torres -->
-                        <path d="M690 200L704 88L718 200
-                                 M696 145H712 M699 120H709
-                                 M702 99H706"/>
-                        <path d="M920 200L934 65L948 200
-                                 M926 150H942 M929 120H939
-                                 M932 90H936 M934 65V45"/>
-                        <!-- Línea del suelo -->
-                        <path d="M0 200H1000"/>
-                    </g>
-                    <g class="detalles">
-                        <path d="M18 164H32 M18 178H32 M18 190H32
-                                 M70 180H86 M70 190H86
-                                 M177 163H207 M177 177H207 M177 190H207
-                                 M287 153H316 M287 168H316 M287 183H316
-                                 M398 140H429 M398 155H429 M398 170H429
-                                 M398 185H429 M515 159H539 M515 174H539
-                                 M515 188H539 M627 140H651 M627 156H651
-                                 M627 172H651 M627 188H651
-                                 M848 135H871 M848 151H871 M848 168H871
-                                 M848 185H871"/>
-                        <path d="M30 40q18-17 35-3q17-13 34 0
-                                 M780 50q16-16 32-3q14-12 29-1"
-                              stroke="#777d83"/>
-                    </g>
-                </svg>
+            <div class="card">
+                <h3>Oportunidades Tech</h3>
+                <p>Descubre ofertas de empleo, proyectos freelance y espacios de coworking ideales para impulsar tu carrera en el vibrante ecosistema madrileño.</p>
             </div>
         </div>
-    </section>
+    </main>
 
-    <section class="servicios" id="servicios">
-        <div class="contenedor grid">
-            <article class="tarjeta">
-                <div class="icono" aria-hidden="true">⌘</div>
-                <h2 data-es="Aplicaciones" data-en="Applications">Aplicaciones</h2>
-                <p data-es="Ideas convertidas en herramientas digitales útiles."
-                   data-en="Ideas turned into useful digital tools.">
-                    Ideas convertidas en herramientas digitales útiles.
-                </p>
-            </article>
-
-            <article class="tarjeta">
-                <div class="icono" aria-hidden="true">◇</div>
-                <h2 data-es="Software" data-en="Software">Software</h2>
-                <p data-es="Tecnología sencilla, práctica y accesible."
-                   data-en="Simple, practical and accessible technology.">
-                    Tecnología sencilla, práctica y accesible.
-                </p>
-            </article>
-
-            <article class="tarjeta">
-                <div class="icono" aria-hidden="true">✳</div>
-                <h2 data-es="Innovación" data-en="Innovation">Innovación</h2>
-                <p data-es="Nuevas ideas para afrontar nuevos retos."
-                   data-en="New ideas to tackle new challenges.">
-                    Nuevas ideas para afrontar nuevos retos.
-                </p>
-            </article>
-
-            <article class="tarjeta">
-                <div class="icono" aria-hidden="true">⌂</div>
-                <h2 data-es="Talento madrileño" data-en="Madrid talent">
-                    Talento madrileño
-                </h2>
-                <p data-es="Creatividad y conocimiento con raíces en Madrid."
-                   data-en="Creativity and knowledge rooted in Madrid.">
-                    Creatividad y conocimiento con raíces en Madrid.
-                </p>
-            </article>
-        </div>
-    </section>
-
-    <section class="proyectos" id="proyectos">
-        <div class="contenedor">
-            <h2 class="titulo-seccion"
-                data-es="Ideas que se convierten en soluciones"
-                data-en="Ideas becoming solutions">
-                Ideas que se convierten en soluciones
-            </h2>
-
-            <p class="texto-seccion"
-               data-es="Un punto de encuentro para explorar proyectos digitales, experimentar y compartir tecnología."
-               data-en="A meeting point to explore digital projects, experiment and share technology.">
-                Un punto de encuentro para explorar proyectos digitales,
-                experimentar y compartir tecnología.
-            </p>
-
-            <article class="proyecto">
-                <h3>APPMADRID365</h3>
-                <p data-es="Un proyecto abierto a nuevas ideas, aplicaciones y recursos digitales vinculados a Madrid. Este espacio irá creciendo con cada nueva iniciativa."
-                   data-en="A project open to new ideas, applications and digital resources connected to Madrid. This space will grow with each new initiative.">
-                    Un proyecto abierto a nuevas ideas, aplicaciones y
-                    recursos digitales vinculados a Madrid. Este espacio
-                    irá creciendo con cada nueva iniciativa.
-                </p>
-
-                <div class="etiquetas">
-                    <span>Apps</span>
-                    <span>Software</span>
-                    <span>Innovación</span>
-                    <span>Madrid</span>
-                </div>
-            </article>
-        </div>
-    </section>
-
-    <section class="acerca" id="acerca">
-        <div class="contenedor">
-            <h2 class="titulo-seccion"
-                data-es="Tecnología con identidad propia"
-                data-en="Technology with its own identity">
-                Tecnología con identidad propia
-            </h2>
-
-            <p data-es="APPMADRID365 nace con una idea: acercar las aplicaciones, el software y la innovación a las personas. Un proyecto independiente que mira al futuro desde Madrid."
-               data-en="APPMADRID365 starts with one idea: bringing applications, software and innovation closer to people. An independent project looking to the future from Madrid.">
-                APPMADRID365 nace con una idea: acercar las aplicaciones,
-                el software y la innovación a las personas. Un proyecto
-                independiente que mira al futuro desde Madrid.
-            </p>
-        </div>
-    </section>
-
-    <section class="contacto" id="contacto">
-        <div class="contenedor">
-            <h2 class="titulo-seccion"
-                data-es="Construyamos algo nuevo"
-                data-en="Let's build something new">
-                Construyamos algo nuevo
-            </h2>
-
-            <p data-es="¿Tienes una idea o propuesta de colaboración?"
-               data-en="Have an idea or collaboration proposal?">
-                ¿Tienes una idea o propuesta de colaboración?
-            </p>
-
-            <!-- Sustituye esta dirección por tu correo real si lo deseas -->
-            <a class="boton" href="mailto:info@appmadrid365.com"
-               data-es="Escríbenos →" data-en="Get in touch →">
-                Escríbenos →
-            </a>
-        </div>
-    </section>
-</main>
-
-<footer>
-    <div class="contenedor pie">
-        <span>© <span id="anio"></span> APPMADRID365</span>
-        <span data-es="Apps · Software · Innovación · Madrid"
-              data-en="Apps · Software · Innovation · Madrid">
-            Apps · Software · Innovación · Madrid
-        </span>
-        <a href="#inicio"
-           data-es="Volver arriba ↑"
-           data-en="Back to top ↑">Volver arriba ↑</a>
-    </div>
-</footer>
-
-<script>
-/* =========================================================
-   FUNCIONES BÁSICAS: IDIOMA Y AÑO
-   ========================================================= */
-
-document.getElementById("anio").textContent =
-    new Date().getFullYear();
-
-const botonesIdioma = document.querySelectorAll("[data-idioma]");
-const textos = document.querySelectorAll("[data-es][data-en]");
-
-function cambiarIdioma(idioma) {
-    document.documentElement.lang = idioma;
-
-    textos.forEach(function(elemento) {
-        elemento.textContent = elemento.getAttribute("data-" + idioma);
-    });
-
-    botonesIdioma.forEach(function(boton) {
-        const seleccionado = boton.getAttribute("data-idioma") === idioma;
-
-        boton.classList.toggle("activo", seleccionado);
-        boton.setAttribute("aria-pressed", String(seleccionado));
-    });
-}
-
-botonesIdioma.forEach(function(boton) {
-    boton.addEventListener("click", function() {
-        cambiarIdioma(boton.getAttribute("data-idioma"));
-    });
-});
-</script>
+    <!-- Pie de página -->
+    <footer id="contacto">
+        <p>&copy; 2026 AppMadrid365. Todos los derechos reservados. Impulsando la programación en Madrid.</p>
+    </footer>
 
 </body>
 </html>
